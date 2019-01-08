@@ -14,6 +14,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * 测试用controller
+ */
 @RestController
 @RequestMapping("test/v2")
 @Api(description = "测试")
@@ -52,4 +55,18 @@ public class TestController extends BaseController {
         }
         return new MessageResponse();
     }
+
+    @GetMapping(value = "/getTask")
+    @ApiOperation(value = "获取Task",httpMethod = "GET",notes = "")
+    public MessageResponse getTask() {
+        try {
+            testService.getActiveJob();
+        }catch (Exception e){
+            log.error(" TestController -> getTask Exception",e);
+            return super.handleException(e);
+        }
+        return new MessageResponse();
+    }
+
+
 }

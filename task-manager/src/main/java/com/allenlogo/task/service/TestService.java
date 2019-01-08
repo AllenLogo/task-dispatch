@@ -1,5 +1,6 @@
 package com.allenlogo.task.service;
 
+import com.alibaba.fastjson.JSONObject;
 import lombok.extern.slf4j.Slf4j;
 import org.quartz.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +14,25 @@ public class TestService {
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
 
+    /**
+     * 添加新定时任务
+     * @param id
+     * @throws SchedulerException
+     */
     public void addTask(String id) throws SchedulerException {
         startJob(schedulerFactoryBean.getScheduler(),id,"0/5 * * * * ?","com.allenlogo.task.job.TestJob",id);
     }
 
+
+    /**
+     * 启动定时任务
+     * @param scheduler
+     * @param name
+     * @param cron
+     * @param className
+     * @param id
+     * @throws SchedulerException
+     */
     private void startJob(Scheduler scheduler, String name, String cron, String className,String id) throws SchedulerException {
         // 通过JobBuilder构建JobDetail实例，JobDetail规定只能是实现Job接口的实例
         // JobDetail 是具体Job实例
@@ -37,5 +53,19 @@ public class TestService {
         CronTrigger cronTrigger = TriggerBuilder.newTrigger().withIdentity(name, "group1")
                 .withSchedule(cronScheduleBuilder).build();
         scheduler.scheduleJob(jobDetail, cronTrigger);
+
+        schedulerFactoryBean.getScheduler().getCurrentlyExecutingJobs().stream().forEach(item->{
+            log.info("{}", JSONObject.toJSONString(item));
+        });
+    }
+
+    /**
+     * 获取活的任务
+     */
+    public void getActiveJob() throws SchedulerException {
+        log.info("getActiveJob");
+        schedulerFactoryBean.getScheduler().getCurrentlyExecutingJobs().stream().forEach(item->{
+            log.info("{}", JSONObject.toJSONString(item));
+        });
     }
 }

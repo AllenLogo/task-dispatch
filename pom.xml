@@ -30,6 +30,8 @@
         <springboot.version>2.1.1.RELEASE</springboot.version>
         <!-- A : [BEG] a.cs == apache commons -->
         <v.a.cs.lang3>3.3.2</v.a.cs.lang3>
+        <!-- F -->
+        <v.fastjson>1.2.46</v.fastjson>
         <!-- G -->
         <v.gson>2.8.2</v.gson>
         <!--L-->
@@ -57,6 +59,12 @@
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>${v.a.cs.lang3}</version>
+            </dependency>
+            <!-- F -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${v.fastjson}</version>
             </dependency>
             <!--G-->
             <dependency>
