@@ -34,6 +34,8 @@
         <v.gson>2.8.2</v.gson>
         <!--L-->
         <v.lombok>1.16.18</v.lombok>
+        <!--Q-->
+        <v.quartz>2.2.1</v.quartz>
         <!-- S -->
         <v.swagger2>2.9.2</v.swagger2>
     </properties>
@@ -50,7 +52,6 @@
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${springboot.version}</version>
             </dependency>
-
             <!--A-->
             <dependency>
                 <groupId>org.apache.commons</groupId>
@@ -68,6 +69,17 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${v.lombok}</version>
+            </dependency>
+            <!-- Q -->
+            <dependency>
+                <groupId>org.quartz-scheduler</groupId>
+                <artifactId>quartz</artifactId>
+                <version>${v.quartz}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-quartz</artifactId>
+                <version>${springboot.version}</version>
             </dependency>
             <!-- S -->
             <dependency>
