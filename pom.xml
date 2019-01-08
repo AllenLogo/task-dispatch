@@ -19,6 +19,7 @@
 
     <modules>
         <module>task-manager</module>
+        <module>task-common</module>
     </modules>
 
     <properties>
@@ -27,8 +28,14 @@
         <java.version>1.8</java.version>
         <java.encoding>UTF-8</java.encoding>
         <springboot.version>2.1.1.RELEASE</springboot.version>
+        <!-- A : [BEG] a.cs == apache commons -->
+        <v.a.cs.lang3>3.3.2</v.a.cs.lang3>
+        <!-- G -->
+        <v.gson>2.8.2</v.gson>
+        <!--L-->
+        <v.lombok>1.16.18</v.lombok>
         <!-- S -->
-        <v.swagger2>2.9.1</v.swagger2>
+        <v.swagger2>2.9.2</v.swagger2>
     </properties>
 
     <dependencyManagement>
@@ -42,6 +49,25 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-web</artifactId>
                 <version>${springboot.version}</version>
+            </dependency>
+
+            <!--A-->
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${v.a.cs.lang3}</version>
+            </dependency>
+            <!--G-->
+            <dependency>
+                <groupId>com.google.code.gson</groupId>
+                <artifactId>gson</artifactId>
+                <version>${v.gson}</version>
+            </dependency>
+            <!--L-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${v.lombok}</version>
             </dependency>
             <!-- S -->
             <dependency>
