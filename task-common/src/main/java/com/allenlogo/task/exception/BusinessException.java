@@ -22,4 +22,11 @@ public class BusinessException extends RuntimeException {
         response.setCode(code);
         response.setMsg(msg);
     }
+
+    public BusinessException(ExceptionTypeEnum exceptionTypeEnum) {
+        super(exceptionTypeEnum.getMsg());
+        response = new MessageResponse();
+        response.setCode(exceptionTypeEnum.getCode());
+        response.setMsg(exceptionTypeEnum.getMsg());
+    }
 }

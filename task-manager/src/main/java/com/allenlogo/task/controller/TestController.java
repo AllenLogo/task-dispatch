@@ -1,6 +1,8 @@
 package com.allenlogo.task.controller;
 
 import com.allenlogo.task.service.TestService;
+import com.allenlogo.task.vo.request.TaskChangeRequest;
+import com.allenlogo.task.vo.request.TaskRequest;
 import com.allenlogo.task.vo.request.TestRequest;
 import com.allenlogo.task.vo.response.MessageResponse;
 import com.allenlogo.task.vo.response.TestResponse;
@@ -43,14 +45,46 @@ public class TestController extends BaseController {
         return new MessageResponse<>(testResponse);
     }
 
-    @GetMapping(value = "/addTask")
-    @ApiOperation(value = "添加Task",httpMethod = "GET",notes = "")
-    @ApiImplicitParams({@ApiImplicitParam(name = "taskId",value = "任务ID",required = true)})
-    public MessageResponse addTask(@RequestParam(name = "taskId") String taskId) {
+    @PostMapping(value = "/addTask")
+    @ApiOperation(value = "添加Task",httpMethod = "POST",notes = "")
+    public MessageResponse addTask(@RequestBody TaskRequest taskRequest, BindingResult result){
+        if (result.hasErrors()) {
+            return parseErrors(result);
+        }
         try {
-            testService.addTask(taskId);
+            testService.addTask(taskRequest);
         }catch (Exception e){
             log.error(" TestController -> addTask Exception",e);
+            return super.handleException(e);
+        }
+        return new MessageResponse();
+    }
+
+    @PostMapping(value = "/removeTask")
+    @ApiOperation(value = "删除Task",httpMethod = "POST",notes = "")
+    public MessageResponse removeTask(@RequestBody TaskRequest taskRequest, BindingResult result){
+        if (result.hasErrors()) {
+            return parseErrors(result);
+        }
+        try {
+            testService.removeTask(taskRequest);
+        }catch (Exception e){
+            log.error(" TestController -> removeTask Exception",e);
+            return super.handleException(e);
+        }
+        return new MessageResponse();
+    }
+
+    @PostMapping(value = "/changeTask")
+    @ApiOperation(value = "修改Task",httpMethod = "POST",notes = "")
+    public MessageResponse changeTask(@RequestBody TaskChangeRequest taskChangeRequest, BindingResult result){
+        if (result.hasErrors()) {
+            return parseErrors(result);
+        }
+        try {
+            testService.changeTask(taskChangeRequest);
+        }catch (Exception e){
+            log.error(" TestController -> removeTask Exception",e);
             return super.handleException(e);
         }
         return new MessageResponse();

@@ -9,6 +9,6 @@ import org.quartz.JobExecutionException;
 public class TestJob implements Job {
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        log.info("taskGuid:{}",jobExecutionContext.getMergedJobDataMap().getString("taskGuid"));
+        log.info("taskGuid:{}",jobExecutionContext.getMergedJobDataMap().get("taskGuid"));
     }
 }
