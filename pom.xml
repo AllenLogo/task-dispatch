@@ -34,12 +34,19 @@
         <v.fastjson>1.2.46</v.fastjson>
         <!-- G -->
         <v.gson>2.8.2</v.gson>
+        <!--H-->
+        <v.HiKariCP>2.7.8</v.HiKariCP>
         <!--L-->
         <v.lombok>1.16.18</v.lombok>
         <!--Q-->
         <v.quartz>2.2.1</v.quartz>
         <!-- S -->
         <v.swagger2>2.9.2</v.swagger2>
+        <!-- M -->
+        <v.mybatis>3.4.4</v.mybatis>
+        <v.mybatis.spring>1.3.1</v.mybatis.spring>
+        <v.mysql.connector.java>5.1.29</v.mysql.connector.java>
+        <v.mysql.tk>2.0.2</v.mysql.tk>
     </properties>
 
     <dependencyManagement>
@@ -72,6 +79,12 @@
                 <artifactId>gson</artifactId>
                 <version>${v.gson}</version>
             </dependency>
+            <!--H-->
+            <dependency>
+                <groupId>com.zaxxer</groupId>
+                <artifactId>HikariCP</artifactId>
+                <version>${v.HiKariCP}</version>
+            </dependency>
             <!--L-->
             <dependency>
                 <groupId>org.projectlombok</groupId>
@@ -100,6 +113,27 @@
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger-ui</artifactId>
                 <version>${v.swagger2}</version>
+            </dependency>
+            <!-- M -->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql-connect.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis</artifactId>
+                <version>${v.mybatis}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis</groupId>
+                <artifactId>mybatis-spring</artifactId>
+                <version>${v.mybatis.spring}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mybatis.spring.boot</groupId>
+                <artifactId>mybatis-spring-boot-starter</artifactId>
+                <version>${v.mybatis.spring}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
