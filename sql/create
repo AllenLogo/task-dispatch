@@ -7,13 +7,13 @@ CREATE TABLE `task_info` (
   `code` varchar(11) DEFAULT NULL COMMENT '业务编码，唯一主键',
   `name` varchar(50) DEFAULT NULL COMMENT '任务名称',
   `startDate` varchar(20) DEFAULT NULL COMMENT '任务开始日期',
+  `endDate` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL COMMENT '任务结束日期',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',
   `periods` varchar(200) DEFAULT NULL COMMENT '任务可执行时间段：HH:MM-HH:MM多个,分隔',
   `createGuid` int(11) DEFAULT NULL COMMENT '创建人guid',
   `runScript` text COMMENT '执行脚本',
-  `endDate` varchar(20) DEFAULT NULL COMMENT '任务结束日期',
   PRIMARY KEY (`guid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 CREATE TABLE `task_server` (
   `guid` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据逐渐',
