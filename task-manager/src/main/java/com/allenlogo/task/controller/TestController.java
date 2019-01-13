@@ -102,5 +102,28 @@ public class TestController extends BaseController {
         return new MessageResponse();
     }
 
+    @GetMapping(value = "/addTaskInfo")
+    @ApiOperation(value = "新增TaskInfo",httpMethod = "GET",notes = "")
+    public MessageResponse addTaskInfo(@RequestParam("name")String name) {
+        try {
+            testService.addTaskInfo(name);
+        }catch (Exception e){
+            log.error(" TestController -> addTaskInfo Exception",e);
+            return super.handleException(e);
+        }
+        return new MessageResponse();
+    }
+
+    @GetMapping(value = "/selectTaskInfo")
+    @ApiOperation(value = "新增TaskInfo",httpMethod = "GET",notes = "")
+    public MessageResponse selectTaskInfo(@RequestParam("guid")Integer guid) {
+        try {
+            testService.selectTaskInfo(guid);
+        }catch (Exception e){
+            log.error(" TestController -> addTaskInfo Exception",e);
+            return super.handleException(e);
+        }
+        return new MessageResponse();
+    }
 
 }

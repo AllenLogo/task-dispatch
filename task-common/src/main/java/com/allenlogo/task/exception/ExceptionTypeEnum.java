@@ -4,6 +4,7 @@ import lombok.Getter;
 
 /**
  * 上抛异常枚举
+ * @author allenlogo
  */
 public enum ExceptionTypeEnum {
     /************************ 零、基础相关返回响应吗 900 00 XXX  *****************************/

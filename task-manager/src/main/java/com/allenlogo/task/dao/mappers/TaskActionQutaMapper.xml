@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allenlogo.task.dao.TaskActionQutaMapper">
+  <resultMap id="BaseResultMap" type="com.allenlogo.task.entity.TaskActionQuta">
+    <constructor>
+      <idArg column="guid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="volume" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="infoGuid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="infoCode" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="runServerGuid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="execActionGuid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task_action_quta
+    where guid = #{guid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.allenlogo.task.entity.TaskActionQuta">
+    insert into task_action_quta (guid, volume, infoGuid, 
+      infoCode, runServerGuid, execActionGuid
+      )
+    values (#{guid,jdbcType=INTEGER}, #{volume,jdbcType=INTEGER}, #{infoGuid,jdbcType=INTEGER}, 
+      #{infoCode,jdbcType=VARCHAR}, #{runServerGuid,jdbcType=INTEGER}, #{execActionGuid,jdbcType=INTEGER}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.allenlogo.task.entity.TaskActionQuta">
+    update task_action_quta
+    set volume = #{volume,jdbcType=INTEGER},
+      infoGuid = #{infoGuid,jdbcType=INTEGER},
+      infoCode = #{infoCode,jdbcType=VARCHAR},
+      runServerGuid = #{runServerGuid,jdbcType=INTEGER},
+      execActionGuid = #{execActionGuid,jdbcType=INTEGER}
+    where guid = #{guid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select guid, volume, infoGuid, infoCode, runServerGuid, execActionGuid
+    from task_action_quta
+    where guid = #{guid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select guid, volume, infoGuid, infoCode, runServerGuid, execActionGuid
+    from task_action_quta
+  </select>
+</mapper>

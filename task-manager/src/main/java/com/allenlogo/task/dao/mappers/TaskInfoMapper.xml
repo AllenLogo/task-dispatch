@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.allenlogo.task.dao.TaskInfoMapper">
+  <resultMap id="BaseResultMap" type="com.allenlogo.task.entity.TaskInfo">
+    <constructor>
+      <idArg column="guid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="createTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="updateTime" javaType="java.util.Date" jdbcType="TIMESTAMP" />
+      <arg column="isDel" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="isUse" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="startDate" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="remark" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="periods" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="createGuid" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="endDate" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="runScript" javaType="java.lang.String" jdbcType="LONGVARCHAR" />
+    </constructor>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task_info
+    where guid = #{guid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.allenlogo.task.entity.TaskInfo">
+    insert into task_info (guid, createTime, updateTime, 
+      isDel, isUse, code, 
+      name, startDate, remark, 
+      periods, createGuid, endDate, 
+      runScript)
+    values (#{guid,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{isDel,jdbcType=INTEGER}, #{isUse,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{startDate,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{periods,jdbcType=VARCHAR}, #{createGuid,jdbcType=INTEGER}, #{endDate,jdbcType=VARCHAR}, 
+      #{runScript,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.allenlogo.task.entity.TaskInfo">
+    update task_info
+    set createTime = #{createTime,jdbcType=TIMESTAMP},
+      updateTime = #{updateTime,jdbcType=TIMESTAMP},
+      isDel = #{isDel,jdbcType=INTEGER},
+      isUse = #{isUse,jdbcType=INTEGER},
+      code = #{code,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      startDate = #{startDate,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      periods = #{periods,jdbcType=VARCHAR},
+      createGuid = #{createGuid,jdbcType=INTEGER},
+      endDate = #{endDate,jdbcType=VARCHAR},
+      runScript = #{runScript,jdbcType=LONGVARCHAR}
+    where guid = #{guid,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select guid, createTime, updateTime, isDel, isUse, code, name, startDate, remark, 
+    periods, createGuid, endDate, runScript
+    from task_info
+    where guid = #{guid,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select guid, createTime, updateTime, isDel, isUse, code, name, startDate, remark, 
+    periods, createGuid, endDate, runScript
+    from task_info
+  </select>
+  <select id="selectByGuid" resultMap="BaseResultMap">
+    select * from task_info where guid=${guid}
+  </select>
+</mapper>

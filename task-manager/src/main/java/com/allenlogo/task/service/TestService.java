@@ -1,6 +1,8 @@
 package com.allenlogo.task.service;
 
 import com.alibaba.fastjson.JSONObject;
+import com.allenlogo.task.dao.TaskInfoMapper;
+import com.allenlogo.task.entity.TaskInfo;
 import com.allenlogo.task.exception.BusinessException;
 import com.allenlogo.task.exception.ExceptionTypeEnum;
 import com.allenlogo.task.util.TimeUtil;
@@ -23,6 +25,8 @@ public class TestService {
 
     @Autowired
     private SchedulerFactoryBean schedulerFactoryBean;
+    @Autowired
+    private TaskInfoMapper taskInfoMapper;
 
     /**
      * 添加新定时任务
@@ -151,6 +155,15 @@ public class TestService {
             addTask(taskRequest);
             throw e;
         }
+    }
 
+    public void addTaskInfo(String name){
+        TaskInfo taskInfo = new TaskInfo();
+        taskInfo.setName(name);
+        taskInfoMapper.insert(taskInfo);
+    }
+
+    public void selectTaskInfo(Integer guid) {
+        log.info("{}",JSONObject.toJSONString(taskInfoMapper.selectByGuid(guid)));
     }
 }

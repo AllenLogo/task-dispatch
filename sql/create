@@ -1,0 +1,70 @@
+CREATE TABLE `task_info` (
+  `guid` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据主键',
+  `createTime` timestamp NULL DEFAULT NULL COMMENT '数据创建时间',
+  `updateTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '数据更新时间',
+  `isDel` int(1) DEFAULT NULL COMMENT '0-未删除，1-删除',
+  `isUse` int(1) DEFAULT NULL COMMENT '0-可用，1-不可用',
+  `code` varchar(11) DEFAULT NULL COMMENT '业务编码，唯一主键',
+  `name` varchar(50) DEFAULT NULL COMMENT '任务名称',
+  `startDate` varchar(20) DEFAULT NULL COMMENT '任务开始日期',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  `periods` varchar(200) DEFAULT NULL COMMENT '任务可执行时间段：HH:MM-HH:MM多个,分隔',
+  `createGuid` int(11) DEFAULT NULL COMMENT '创建人guid',
+  `runScript` text COMMENT '执行脚本',
+  `endDate` varchar(20) DEFAULT NULL COMMENT '任务结束日期',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `task_server` (
+  `guid` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据逐渐',
+  `name` varchar(20) DEFAULT NULL COMMENT '服务器名称',
+  `ip` varchar(20) DEFAULT NULL COMMENT '服务器IP',
+  `port` varchar(10) DEFAULT NULL COMMENT '服务开放地址',
+  `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `task_exec_record` (
+  `guid` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据主键',
+  `infoGuid` int(11) DEFAULT NULL COMMENT '任务信息数据主键',
+  `infoCode` varchar(11) DEFAULT NULL COMMENT '任务信息业务Code',
+  `infoScript` text COMMENT '任务信息-执行脚本',
+  `createTime` timestamp NULL DEFAULT NULL COMMENT '数据创建时间',
+  `updateTime` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP COMMENT '数据更新时间',
+  `sendTime` timestamp NULL DEFAULT NULL COMMENT '任务发送时间',
+  `receiveTime` timestamp NULL DEFAULT NULL COMMENT '任务接收时间',
+  `startTime` timestamp NULL DEFAULT NULL COMMENT '开始时间',
+  `endTime` timestamp NULL DEFAULT NULL COMMENT '结束时间',
+  `runStatus` varchar(10) DEFAULT NULL COMMENT '任务执行阶段',
+  `execStatus` varchar(10) DEFAULT NULL COMMENT '任务执行状态',
+  `runServerGuid` int(11) DEFAULT NULL COMMENT '运行服务器guid',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `task_exec_action` (
+  `guid` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据主键',
+  `name` varchar(50) DEFAULT NULL COMMENT '前端展示名称',
+  `classPath` varchar(200) DEFAULT NULL COMMENT '后端使用的class',
+  `remark` varchar(200) DEFAULT NULL COMMENT '备注',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+CREATE TABLE `task_action_timing` (
+  `guid` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据主键',
+  `cron` varchar(200) DEFAULT NULL COMMENT '定时规则',
+  `infoGuid` int(11) DEFAULT NULL COMMENT '任务信息数据主键',
+  `infoCode` varchar(11) DEFAULT NULL COMMENT '任务信息业务Code',
+  `runServerGuid` int(11) DEFAULT NULL COMMENT '运行服务器guid',
+  `execActionGuid` int(11) DEFAULT NULL COMMENT '执行行为guid',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+CREATE TABLE `task_action_quta` (
+  `guid` int(11) NOT NULL AUTO_INCREMENT COMMENT '数据主键',
+  `volume` int(11) DEFAULT NULL COMMENT '任务执行定额数量',
+  `infoGuid` int(11) DEFAULT NULL COMMENT '任务信息数据主键',
+  `infoCode` varchar(11) DEFAULT NULL COMMENT '任务信息业务Code',
+  `runServerGuid` int(11) DEFAULT NULL COMMENT '运行服务器guid',
+  `execActionGuid` int(11) DEFAULT NULL COMMENT '执行行为guid',
+  PRIMARY KEY (`guid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

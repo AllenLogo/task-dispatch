@@ -45,7 +45,7 @@
         <!-- M -->
         <v.mybatis>3.4.4</v.mybatis>
         <v.mybatis.spring>1.3.1</v.mybatis.spring>
-        <v.mysql.connector.java>5.1.29</v.mysql.connector.java>
+        <v.mysql.connector.java>8.0.11</v.mysql.connector.java>
         <v.mysql.tk>2.0.2</v.mysql.tk>
     </properties>
 
@@ -118,7 +118,7 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql-connect.version}</version>
+                <version>${v.mysql.connector.java}</version>
             </dependency>
             <dependency>
                 <groupId>org.mybatis</groupId>
